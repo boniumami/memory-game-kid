@@ -1,0 +1,72 @@
+/* =========================================================
+   parent.css - 家长面板：弹窗、密码锁、统计、迁移建议
+   ========================================================= */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(60, 50, 40, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 50;
+}
+.modal-box {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 520px;
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 22px;
+}
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.modal-head h3 { margin: 0; font-size: 19px; }
+
+.parent-lock { text-align: center; padding: 10px 0 6px; }
+.lock-tip { color: var(--ink-soft); font-size: 14px; margin: 0 0 12px; }
+#parent-pwd {
+  width: 160px;
+  padding: 11px 14px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: 16px;
+  text-align: center;
+  outline: none;
+  margin-right: 8px;
+}
+#parent-pwd:focus { border-color: var(--primary); }
+.pwd-err { color: var(--danger); font-size: 13px; min-height: 18px; margin: 10px 0 0; }
+
+.panel-block { margin-bottom: 20px; }
+.panel-block h4 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  color: var(--ink);
+  border-left: 4px solid var(--primary);
+  padding-left: 8px;
+}
+.panel-today, .panel-strategy, .panel-advice {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.panel-today .stat-row,
+.panel-strategy .stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.panel-today .stat-row b,
+.panel-strategy .stat-row b { color: var(--ink); }
+.panel-advice ul { margin: 0; padding-left: 18px; }
+.panel-advice li { margin-bottom: 6px; }
+.panel-danger { text-align: center; }

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>记忆寻宝小管家</title>
+  <!-- 样式：按模块拆分，顺序即层叠顺序 -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/game.css" />
+  <link rel="stylesheet" href="css/result.css" />
+  <link rel="stylesheet" href="css/parent.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <!-- 顶部状态栏 -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-emoji">🧭</span>
+      <span class="brand-name">记忆寻宝小管家</span>
+    </div>
+    <div class="topbar-right">
+      <button id="btn-sound" class="icon-btn" title="语音开关" aria-label="语音开关">🔊</button>
+      <button id="btn-parent" class="icon-btn" title="家长面板" aria-label="家长面板">👨‍👩‍👧</button>
+    </div>
+  </header>
+
+  <main id="app" class="app">
+
+    <!-- ========== 首页：角色选择 ========== -->
+    <section id="screen-home" class="screen active">
+      <h1 class="home-title">今天和谁一起去寻宝？</h1>
+      <p class="home-sub">选一个小伙伴，它会陪你一起练习记忆小妙招～</p>
+
+      <!-- 等级与解锁进度 -->
+      <div id="home-level" class="home-level"></div>
+
+      <div id="avatar-list" class="avatar-list"></div>
+
+      <div id="home-status" class="home-status"></div>
+
+
+      <div class="home-actions">
+        <button id="btn-start" class="btn btn-primary" disabled>开始今天的寻宝</button>
+      </div>
+      <p class="home-tip">每天玩一轮就好啦，休息一下记得更牢哦 🌿</p>
+    </section>
+
+    <!-- ========== 游戏通用舞台 ========== -->
+    <section id="screen-game" class="screen">
+      <div class="game-head">
+        <div class="game-head-left">
+          <span id="game-level-name" class="level-name">回忆寻宝</span>
+          <span id="game-round" class="round-tag">第 1 轮</span>
+        </div>
+        <div class="game-head-right">
+          <span class="star-counter">⭐ <b id="star-count">0</b></span>
+        </div>
+      </div>
+
+      <!-- 策略提示条 -->
+      <div id="strategy-bar" class="strategy-bar">
+        <span class="strategy-icon">💡</span>
+        <span id="strategy-text" class="strategy-text"></span>
+      </div>
+
+      <!-- 回忆寻宝：展示区 -->
+      <div id="recall-stage" class="stage">
+        <div id="recall-timer" class="timer hidden">
+          <div class="timer-bar"><div id="timer-fill" class="timer-fill"></div></div>
+          <span id="timer-text" class="timer-text">看仔细啦</span>
+        </div>
+        <div id="recall-grid" class="card-grid"></div>
+        <p id="recall-hint" class="stage-hint"></p>
+      </div>
+
+      <!-- 分类小管家：分类区 -->
+      <div id="sort-stage" class="stage hidden">
+        <div id="sort-pool" class="sort-pool"></div>
+        <div id="sort-baskets" class="sort-baskets"></div>
+        <p id="sort-hint" class="stage-hint"></p>
+      </div>
+
+      <!-- 图像联想小故事：展示/选择区（复用卡片网格） -->
+      <div id="story-stage" class="stage hidden">
+        <div id="story-timer" class="timer hidden">
+          <div class="timer-bar"><div id="story-timer-fill" class="timer-fill"></div></div>
+          <span id="story-timer-text" class="timer-text">看仔细啦</span>
+        </div>
+        <div id="story-grid" class="card-grid"></div>
+        <p id="story-hint" class="stage-hint"></p>
+        <!-- 编故事加分输入 -->
+        <div id="story-input-wrap" class="story-input-wrap hidden">
+          <label for="story-input" class="story-input-label">编一个小故事把它们串起来（可选，加分哦）：</label>
+          <textarea id="story-input" class="story-input" rows="2" maxlength="60" placeholder="例如：小兔子抱着苹果去上学…"></textarea>
+          <button id="btn-story-submit" class="btn btn-ghost btn-small">提交小故事 ⭐</button>
+        </div>
+      </div>
+
+      <!-- 带相似干扰项回忆：展示/选择区（复用卡片网格） -->
+      <div id="similar-stage" class="stage hidden">
+        <div id="similar-timer" class="timer hidden">
+          <div class="timer-bar"><div id="similar-timer-fill" class="timer-fill"></div></div>
+          <span id="similar-timer-text" class="timer-text">看仔细啦</span>
+        </div>
+        <div id="similar-grid" class="card-grid"></div>
+        <p id="similar-hint" class="stage-hint"></p>
+      </div>
+
+      <!-- 底部操作 -->
+      <div class="game-foot">
+        <button id="btn-confirm" class="btn btn-primary hidden">我选好啦</button>
+        <button id="btn-next" class="btn btn-primary hidden">继续</button>
+      </div>
+
+    </section>
+
+    <!-- ========== 结算页面 ========== -->
+    <section id="screen-result" class="screen">
+      <div class="result-card">
+        <div id="result-avatar" class="result-avatar">🐰</div>
+        <h2 id="result-title" class="result-title">今天的寻宝完成啦！</h2>
+        <div class="result-stars">
+          <span class="big-star">⭐</span>
+          <span id="result-star-count" class="result-star-num">0</span>
+        </div>
+        <div id="result-badges" class="badge-list"></div>
+        <div id="result-level" class="result-level"></div>
+        <p id="result-encourage" class="result-encourage"></p>
+        <div id="result-review" class="result-review"></div>
+
+        <div class="result-actions">
+          <button id="btn-home" class="btn btn-ghost">回到首页</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== 家长面板 ========== -->
+  <div id="parent-modal" class="modal hidden">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3>家长面板</h3>
+        <button id="btn-parent-close" class="icon-btn" aria-label="关闭">✕</button>
+      </div>
+
+      <!-- 密码锁 -->
+      <div id="parent-lock" class="parent-lock">
+        <p class="lock-tip">请输入家长密码</p>
+        <input id="parent-pwd" type="password" inputmode="numeric" maxlength="8" placeholder="密码" />
+        <button id="btn-parent-unlock" class="btn btn-primary">进入</button>
+        <p id="parent-pwd-err" class="pwd-err"></p>
+      </div>
+
+      <!-- 面板内容 -->
+      <div id="parent-content" class="parent-content hidden">
+        <div class="panel-block">
+          <h4>今日表现</h4>
+          <div id="panel-today" class="panel-today"></div>
+        </div>
+        <div class="panel-block">
+          <h4>策略表现</h4>
+          <div id="panel-strategy" class="panel-strategy"></div>
+        </div>
+        <div class="panel-block">
+          <h4>迁移学习建议</h4>
+          <div id="panel-advice" class="panel-advice"></div>
+        </div>
+        <div class="panel-block panel-danger">
+          <button id="btn-reset-data" class="btn btn-ghost btn-small">清空本机游戏记录</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 脚本：按依赖顺序加载（共享全局作用域，非 ES Module） -->
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/levels.js"></script>
+  <script src="js/cards.js"></script>
+  <script src="js/recall.js"></script>
+  <script src="js/sort.js"></script>
+  <script src="js/story.js"></script>
+  <script src="js/similar.js"></script>
+  <script src="js/session.js"></script>
+  <script src="js/parent.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

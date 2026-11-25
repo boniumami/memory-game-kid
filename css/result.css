@@ -1,0 +1,85 @@
+/* =========================================================
+   result.css - 结算页：星星、勋章、鼓励话术、等级进度
+   ========================================================= */
+
+.result-card {
+  max-width: 520px;
+  margin: 20px auto;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 32px 26px;
+  text-align: center;
+}
+.result-avatar { font-size: 64px; }
+.result-title { font-size: 22px; margin: 10px 0 16px; }
+.result-stars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.big-star { font-size: 34px; }
+.result-star-num { font-size: 30px; font-weight: 700; color: var(--accent); }
+
+.badge-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: #fff8ec;
+  border: 1px solid #f6e3c4;
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  min-width: 96px;
+}
+.badge-emoji { font-size: 30px; }
+.badge-name { font-size: 13px; color: #8a6a3a; font-weight: 600; }
+.badge.locked { opacity: 0.4; filter: grayscale(1); }
+
+.result-encourage {
+  font-size: 15px;
+  color: var(--ink);
+  background: #f2fbf6;
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin: 0 0 16px;
+}
+.result-review {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+  min-height: 18px;
+}
+
+/* ---------- 结算页：等级进度 ---------- */
+.result-level {
+  font-size: 14px;
+  color: var(--ink-soft);
+  background: #f2fbf6;
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  text-align: left;
+}
+.result-level:empty { display: none; }
+.result-level-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.result-level-row:last-child { margin-bottom: 0; }
+.result-unlock {
+  color: #b06a1f;
+  font-weight: 600;
+  margin-bottom: 8px;
+}

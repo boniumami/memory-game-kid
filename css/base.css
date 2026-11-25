@@ -1,0 +1,116 @@
+/* =========================================================
+   base.css - 设计变量、重置、顶部栏、按钮、屏幕容器
+   记忆寻宝小管家 · 风格：柔和卡通、干净背景、克制动画
+   ========================================================= */
+
+/* ---------- 设计变量 ---------- */
+:root {
+  --bg: #fdf8f0;
+  --bg-soft: #f6efe3;
+  --card: #ffffff;
+  --ink: #4a4038;
+  --ink-soft: #8a7f74;
+  --primary: #7cc6a8;
+  --primary-dark: #5fae8f;
+  --accent: #f6b26b;
+  --accent-soft: #fde3c4;
+  --danger: #e88b8b;
+  --line: #ece3d6;
+  --shadow: 0 6px 18px rgba(120, 100, 80, 0.10);
+  --shadow-sm: 0 3px 10px rgba(120, 100, 80, 0.08);
+  --radius: 20px;
+  --radius-sm: 14px;
+  --font: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--bg);
+  background-image:
+    radial-gradient(circle at 12% 18%, #fdeede 0, transparent 38%),
+    radial-gradient(circle at 88% 82%, #e6f4ec 0, transparent 40%);
+  background-attachment: fixed;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button { font-family: inherit; cursor: pointer; }
+.hidden { display: none !important; }
+
+/* ---------- 顶部栏 ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.brand { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 18px; }
+.brand-emoji { font-size: 22px; }
+.topbar-right { display: flex; gap: 10px; }
+
+.icon-btn {
+  border: none;
+  background: var(--card);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 18px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.icon-btn:hover { transform: translateY(-1px); }
+.icon-btn:active { transform: scale(0.94); }
+.icon-btn.muted { opacity: 0.45; }
+
+/* ---------- 主容器 & 屏幕 ---------- */
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 8px 20px 40px;
+}
+.screen { display: none; animation: fadeIn 0.35s ease; }
+.screen.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- 按钮 ---------- */
+.btn {
+  border: none;
+  border-radius: 999px;
+  padding: 13px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+.btn:active { transform: scale(0.97); }
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(124, 198, 168, 0.4);
+}
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-primary:disabled {
+  background: #d8d2c8;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.btn-ghost {
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+}
+.btn-small { padding: 9px 18px; font-size: 14px; }

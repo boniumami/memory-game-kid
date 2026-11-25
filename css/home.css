@@ -1,0 +1,115 @@
+/* =========================================================
+   home.css - 首页：标题、角色选择、状态、等级与解锁进度
+   ========================================================= */
+
+/* ---------- 首页 ---------- */
+.home-title {
+  text-align: center;
+  font-size: 26px;
+  margin: 18px 0 6px;
+}
+.home-sub {
+  text-align: center;
+  color: var(--ink-soft);
+  margin: 0 0 24px;
+  font-size: 15px;
+}
+
+.avatar-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.avatar-item {
+  width: 92px;
+  padding: 14px 8px 10px;
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 3px solid transparent;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+.avatar-item:hover { transform: translateY(-3px); }
+.avatar-item.selected {
+  border-color: var(--primary);
+  background: #f2fbf6;
+}
+.avatar-emoji { font-size: 40px; display: block; line-height: 1.1; }
+.avatar-name { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
+
+.home-status {
+  text-align: center;
+  min-height: 24px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+.home-status .review-badge {
+  display: inline-block;
+  background: var(--accent-soft);
+  color: #b06a1f;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+.home-actions { text-align: center; }
+.home-tip {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 13px;
+  margin-top: 18px;
+}
+
+/* ---------- 等级与解锁进度 ---------- */
+.home-level {
+  max-width: 520px;
+  margin: 0 auto 22px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 16px 18px;
+}
+.level-current {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.level-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+}
+.level-name-text { font-weight: 600; font-size: 15px; }
+.level-next {
+  font-size: 13px;
+  color: var(--ink-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.level-next-desc { font-size: 12px; color: #b06a1f; }
+.level-progress {
+  height: 8px;
+  background: var(--bg-soft);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.level-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
